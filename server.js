@@ -1,7 +1,11 @@
 const program  = require('commander');
 const inquirer = require('inquirer');
 const neo4j   = require('neo4j-driver').v1;
-const driver  = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "those scoreless irate scruffy zombie manhunts"));
+var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
+var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
+var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
+
+var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
 const session = driver.session();
 function findByEmail(email, cb) {
     session.run(
