@@ -356,4 +356,5 @@ function isTeacher(req, res, cb) {
 
     res.redirect('/')
 }
-app.listen(3000);
+var port = process.env.PORT;
+app.listen(port);
